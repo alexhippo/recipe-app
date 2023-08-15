@@ -10,7 +10,7 @@ const cors = require('cors');
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true';
 
 const userRouter = require('./routes/users');
-const courseRouter = require('./routes/courses');
+const recipeRouter = require('./routes/recipes');
 
 // create the Express app
 const app = express();
@@ -27,13 +27,13 @@ app.use(express.json());
 // setup a friendly greeting for the root route
 app.get('/', (req, res) => {
   res.json({
-    message: 'Welcome to the REST API project!',
+    message: 'Welcome to the Recipe App project!',
   });
 });
 
 // Add routes
 app.use('/api', userRouter);
-app.use('/api', courseRouter);
+app.use('/api', recipeRouter);
 
 // send 404 if no other route matched
 app.use((req, res) => {

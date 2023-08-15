@@ -1,17 +1,9 @@
-# Full Stack App with React and a REST API
+# Full Stack Recipe App with React and a REST API
 
-This project is a Full Stack React application utilising the [School Database REST API built in a previous project.](https://github.com/alexhippo/rest-api-sql-v3) Users can use the web interface built with React to:
-- sign up
-- sign in
-- view courses
-- create a course (if signed in)
-- update their own courses (if authorised)
-- delete their own courses (if authorised)
-
-This app was implemented according to the designs specified in the `/mockups` and `/markup` folder.
+This project is a full stack app based off the School Full Stack React App created in a previous project.
 
 ## Motivation
-This project was created as part of the [Treehouse Full Stack Javascript Techdegree](https://teamtreehouse.com/techdegree/full-stack-javascript).
+I wanted to create an app to store all of my recipes which I've customised and tweaked over the years.
 
 ## Technologies used
 - Javascript

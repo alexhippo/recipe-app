@@ -1,14 +1,14 @@
 const express = require('express');
 
 const router = express.Router();
-const Course = require('../models').Course;
+const Recipe = require('../models').Recipe;
 const User = require('../models').User;
 const { authenticateUser } = require('../middleware/auth-user');
 const { asyncHandler } = require('../middleware/async-handler');
 
-// Return all courses
-router.get('/courses', asyncHandler(async (req, res) => {
-  let courses = await Course.findAll({
+// Return all recipes
+router.get('/recipes', asyncHandler(async (req, res) => {
+  let recipes = await Recipe.findAll({
     attributes: {
       exclude: ['createdAt', 'updatedAt']
     },
@@ -19,12 +19,12 @@ router.get('/courses', asyncHandler(async (req, res) => {
       }
     }
   });
-  res.json(courses);
+  res.json(recipes);
 }));
 
-// Return a specific course
-router.get('/courses/:id', asyncHandler(async (req, res) => {
-  const course = await Course.findByPk(req.params.id, {
+// Return a specific recipe
+router.get('/recipes/:id', asyncHandler(async (req, res) => {
+  const recipe = await Recipe.findByPk(req.params.id, {
     attributes: {
       exclude: ['createdAt', 'updatedAt']
     },
@@ -35,21 +35,21 @@ router.get('/courses/:id', asyncHandler(async (req, res) => {
       }
     }
   });
-  if (course) {
-    res.json(course);
+  if (recipe) {
+    res.json(recipe);
   } else {
     res.json({
-      "error": "Sorry, we couldn't find the course you were looking for."
+      "error": "Sorry, we couldn't find the recipe you were looking for."
     });
   }
 }));
 
-// Create a course
-router.post('/courses', authenticateUser, asyncHandler(async (req, res) => {
+// Create a recipe
+router.post('/recipes', authenticateUser, asyncHandler(async (req, res) => {
   try {
-    const newCourse = await Course.create(req.body);
+    const newRecipes = await Recipe.create(req.body);
     res.status(201)
-      .location(`/courses/${newCourse.dataValues.id}`)
+      .location(`/recipe/${newRecipes.dataValues.id}`)
       .end();
   } catch (error) {
     console.log('ERROR: ', error.name);
@@ -62,21 +62,21 @@ router.post('/courses', authenticateUser, asyncHandler(async (req, res) => {
   }
 }));
 
-// Update an existing course
-router.put("/courses/:id", authenticateUser, asyncHandler(async (req, res, next) => {
+// Update an existing recipe
+router.put("/recipes/:id", authenticateUser, asyncHandler(async (req, res, next) => {
   const user = req.currentUser;
-  let course;
+  let recipe;
   try {
-    course = await Course.findByPk(req.params.id);
-    if (course) {
-      if (course.userId === user.id) {
-        await course.update(req.body);
+    recipe = await Recipe.findByPk(req.params.id);
+    if (recipe) {
+      if (recipe.userId === user.id) {
+        await recipe.update(req.body);
         res.status(204).end();
       } else {
-        res.status(403).json({ error: 'You are not authorised to update this course.' });
+        res.status(403).json({ error: 'You are not authorised to update this recipe.' });
       }
     } else {
-      const err = new Error(`Course Not Found`);
+      const err = new Error(`Recipe Not Found`);
       res.status(404).json({ error: err.message });
     }
   } catch (error) {
@@ -89,19 +89,19 @@ router.put("/courses/:id", authenticateUser, asyncHandler(async (req, res, next)
   }
 }));
 
-// Delete an existing course
-router.delete("/courses/:id", authenticateUser, asyncHandler(async (req, res, next) => {
+// Delete an existing recipe
+router.delete("/recipes/:id", authenticateUser, asyncHandler(async (req, res, next) => {
   const user = req.currentUser;
-  const course = await Course.findByPk(req.params.id);
-  if (course) {
-    if (course.userId === user.id) {
-      await course.destroy();
+  const recipe = await Recipe.findByPk(req.params.id);
+  if (recipe) {
+    if (recipe.userId === user.id) {
+      await recipe.destroy();
       res.status(204).end();
     } else {
-      res.status(403).json({ error: 'You are not authorised to delete this course.' });
+      res.status(403).json({ error: 'You are not authorised to delete this recipe.' });
     }
   } else {
-    const err = new Error(`Course Not Found`);
+    const err = new Error(`Recipe Not Found`);
     res.status(404).json({ error: err.message });
   }
 }));

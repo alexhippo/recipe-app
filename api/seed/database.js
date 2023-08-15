@@ -5,7 +5,7 @@ const Context = require('./context');
 
 class Database {
   constructor(seedData, enableLogging) {
-    this.courses = seedData.courses;
+    this.recipes = seedData.recipes;
     this.users = seedData.users;
     this.enableLogging = enableLogging;
     this.context = new Context('fsjstd-restapi.db', enableLogging);
@@ -38,25 +38,28 @@ class Database {
         VALUES
           (?, ?, ?, ?, datetime('now'), datetime('now'));
       `,
-      user.firstName,
-      user.lastName,
-      user.emailAddress,
-      user.password);
+        user.firstName,
+        user.lastName,
+        user.emailAddress,
+        user.password);
   }
 
-  createCourse(course) {
+  createRecipe(recipe) {
     return this.context
       .execute(`
-        INSERT INTO Courses
-          (userId, title, description, estimatedTime, materialsNeeded, createdAt, updatedAt)
+        INSERT INTO Recipes
+          (userId, title, method, estimatedTime, ingredients, numOfServings, otherNotes, originalRecipeLink, createdAt, updatedAt)
         VALUES
-          (?, ?, ?, ?, ?, datetime('now'), datetime('now'));
+          (?, ?, ?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'));
       `,
-      course.userId,
-      course.title,
-      course.description,
-      course.estimatedTime,
-      course.materialsNeeded);
+        recipe.userId,
+        recipe.title,
+        recipe.method,
+        recipe.estimatedTime,
+        recipe.ingredients,
+        recipe.numOfServings,
+        recipe.otherNotes,
+        recipe.originalRecipeLink);
   }
 
   async hashUserPasswords(users) {
@@ -76,13 +79,22 @@ class Database {
     }
   }
 
-  async createCourses(courses) {
-    for (const course of courses) {
-      await this.createCourse(course);
+  async createRecipes(recipes) {
+    for (const recipe of recipes) {
+      await this.createRecipe(recipe);
     }
   }
 
   async init() {
+    const oldCourseTableExists = await this.tableExists('Courses');
+    if (oldCourseTableExists) {
+      this.log('Dropping the old Courses table...');
+
+      await this.context.execute(`
+        DROP TABLE IF EXISTS Courses;
+      `);
+    }
+
     const userTableExists = await this.tableExists('Users');
 
     if (userTableExists) {
@@ -115,25 +127,28 @@ class Database {
 
     await this.createUsers(users);
 
-    const courseTableExists = await this.tableExists('Courses');
+    const recipeTableExists = await this.tableExists('Recipes');
 
-    if (courseTableExists) {
-      this.log('Dropping the Courses table...');
+    if (recipeTableExists) {
+      this.log('Dropping the Recipes table...');
 
       await this.context.execute(`
-        DROP TABLE IF EXISTS Courses;
+        DROP TABLE IF EXISTS Recipes;
       `);
     }
 
-    this.log('Creating the Courses table...');
+    this.log('Creating the Recipes table...');
 
     await this.context.execute(`
-      CREATE TABLE Courses (
+      CREATE TABLE Recipes (
         id INTEGER PRIMARY KEY AUTOINCREMENT, 
         title VARCHAR(255) NOT NULL DEFAULT '', 
-        description TEXT NOT NULL DEFAULT '', 
+        method TEXT NOT NULL DEFAULT '', 
         estimatedTime VARCHAR(255), 
-        materialsNeeded VARCHAR(255), 
+        ingredients VARCHAR(255),
+        numOfServings VARCHAR(255),
+        otherNotes TEXT, 
+        originalRecipeLink VARCHAR(255),
         createdAt DATETIME NOT NULL, 
         updatedAt DATETIME NOT NULL, 
         userId INTEGER NOT NULL DEFAULT -1 
@@ -141,9 +156,9 @@ class Database {
       );
     `);
 
-    this.log('Creating the course records...');
+    this.log('Creating the recipe records...');
 
-    await this.createCourses(this.courses);
+    await this.createRecipes(this.recipes);
 
     this.log('Database successfully initialized!');
   }
