@@ -71,11 +71,11 @@ export default class Data {
   }
 
   /**
-   * Get all available courses
+   * Get all available recipes
    * @returns API response if successful
    */
-  async getCourses() {
-    const response = await this.api('/courses', 'GET', null, false);
+  async getRecipes() {
+    const response = await this.api('/recipes', 'GET', null, false);
     if (response.status === 200) {
       return response.json().then(data => data);
     } else {
@@ -84,12 +84,12 @@ export default class Data {
   }
 
   /**
-   * Get a specific course by id
-   * @param {String} id - Course ID
+   * Get a specific recipe by id
+   * @param {String} id - Recipe ID
    * @returns API response if successful
    */
-  async getCourse(id) {
-    const response = await this.api(`/courses/${id}`, 'GET', null, false);
+  async getRecipe(id) {
+    const response = await this.api(`/recipes/${id}`, 'GET', null, false);
     if (response.status === 200) {
       return response.json().then(data => data);
     } else {
@@ -98,14 +98,14 @@ export default class Data {
   }
 
   /**
-   * Create a new course
-   * @param {Object} course - with title, description, estimated time and materials needed
+   * Create a new recipe
+   * @param {Object} recipe - with title, description, estimated time and materials needed
    * @param {String} username - user's email address
    * @param {String} password 
    * @returns empty response if successful
    */
-  async createCourse(course, username, password) {
-    const response = await this.api('/courses', 'POST', course, true, { username, password });
+  async createRecipe(course, username, password) {
+    const response = await this.api('/recipes', 'POST', course, true, { username, password });
     if (response.status === 201) {
       return [];
     }
@@ -120,15 +120,15 @@ export default class Data {
   }
 
   /**
-   * Delete a specific course
-   * Only users who are authors of the course are authorised to delete the course
-   * @param {String} id - Course ID
+   * Delete a specific recipe
+   * Only users who are authors of the recipe are authorised to delete the recipe
+   * @param {String} id - Recipe ID
    * @param {String} username - user's email address
    * @param {String} password 
    * @returns empty response if successful
    */
-  async deleteCourse(id, username, password) {
-    const response = await this.api(`/courses/${id}`, 'DELETE', null, true, { username, password });
+  async deleteRecipe(id, username, password) {
+    const response = await this.api(`/recipes/${id}`, 'DELETE', null, true, { username, password });
     if (response.status === 204) {
       return [];
     }
@@ -143,15 +143,15 @@ export default class Data {
   }
 
   /**
-   * Update a particular course
-   * @param {String} id - Course ID
-   * @param {Object} course - with updated title, description, estimated time and materials needed
+   * Update a particular recipe
+   * @param {String} id - Recipe ID
+   * @param {Object} recipe - with updated title, method, estimated time and ingredients
    * @param {String} username - user's email address
    * @param {String} password 
    * @returns empty response if successful
    */
-  async updateCourse(id, course, username, password) {
-    const response = await this.api(`/courses/${id}`, 'PUT', course, true, { username, password });
+  async updateRecipe(id, recipe, username, password) {
+    const response = await this.api(`/recipes/${id}`, 'PUT', recipe, true, { username, password });
     if (response.status === 204) {
       return [];
     }

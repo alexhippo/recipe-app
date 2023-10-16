@@ -2,13 +2,13 @@ import React from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 import Header from './Components/Header';
-import Courses from './Components/Courses/Courses';
-import CourseDetail from './Components/Courses/CourseDetail';
-import UpdateCourse from './Components/Courses/UpdateCourse';
+import Recipes from './Components/Recipes/Recipes';
+import RecipeDetail from './Components/Recipes/RecipeDetail';
+import UpdateRecipe from './Components/Recipes/UpdateRecipe';
 import UserSignIn from './Components/User/UserSignIn';
 import UserSignUp from './Components/User/UserSignUp';
 import UserSignOut from './Components/User/UserSignOut';
-import CreateCourse from './Components/Courses/CreateCourse';
+import CreateRecipe from './Components/Recipes/CreateRecipe';
 import NotFound from './Components/Errors/NotFound';
 import Forbidden from './Components/Errors/Forbidden';
 import UnhandledError from './Components/Errors/UnhandledError';
@@ -21,17 +21,17 @@ function App() {
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<Navigate replace to="/courses" />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/courses/:id" element={<CourseDetail />} />
-          <Route path="/courses/:id/update" element={<PrivateRoute />}>
-            <Route path="/courses/:id/update" element={<UpdateCourse />} />
+          <Route path="/" element={<Navigate replace to="/recipes" />} />
+          <Route path="/recipes" element={<Recipes />} />
+          <Route path="/recipes/:id" element={<RecipeDetail />} />
+          <Route path="/recipes/:id/update" element={<PrivateRoute />}>
+            <Route path="/recipes/:id/update" element={<UpdateRecipe />} />
           </Route>
           <Route path="/signin" element={<UserSignIn />} />
           <Route path="/signup" element={<UserSignUp />} />
           <Route path="/signout" element={<UserSignOut />} />
-          <Route path="/courses/create" element={<PrivateRoute />}>
-            <Route path="/courses/create" element={<CreateCourse />} />
+          <Route path="/recipes/create" element={<PrivateRoute />}>
+            <Route path="/recipes/create" element={<CreateRecipe />} />
           </Route>
           <Route path="/notfound" element={<NotFound />} />
           <Route path="/forbidden" element={<Forbidden />} />
