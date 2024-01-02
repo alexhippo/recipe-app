@@ -1,9 +1,18 @@
 # Full Stack Recipe App with React and a REST API
 
-This project is a full stack Recipe app based off the School Full Stack React App created in a previous project.
+This project is a full stack Recipe app based off the School Full Stack React App created in a previous project for the Treehouse Full Stack JS Techdegree.
 
 ## Motivation
 I wanted to create an app to store all of my recipes which I've customised and tweaked over the years whilst also practicing my React and Javascript skills.
+
+## Features
+Users can:
+- sign up
+- sign in
+- view recipes
+- create a recipe (if signed in)
+- update their own recipes (if authorised)
+- delete their own recipes (if authorised)
 
 ## Technologies used
 - Javascript
