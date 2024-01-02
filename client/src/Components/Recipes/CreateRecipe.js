@@ -101,7 +101,7 @@ const CreateRecipe = () => {
             <label htmlFor="recipeTitle">Recipe Title</label>
             <input id="recipeTitle" name="recipeTitle" type="text" value={recipeTitle} onChange={onChange} />
 
-            {/* Use current authenticated user's first name and last name as course author */}
+            {/* Use current authenticated user's first name and last name as recipe author */}
             <p>By {authUser.firstName} {authUser.lastName}</p>
 
             <label htmlFor="recipeMethod">Recipe Method</label>

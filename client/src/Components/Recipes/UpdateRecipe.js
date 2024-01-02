@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Context from '../../Context';
 import Loading from '../Loading';
 
-const UpdateCourse = () => {
+const UpdateRecipe = () => {
   const context = useContext(Context.Context);
   const [isLoading, setIsLoading] = useState(true);
   const [title, setRecipeTitle] = useState('');
@@ -171,4 +171,4 @@ const UpdateCourse = () => {
   )
 }
 
-export default UpdateCourse;
+export default UpdateRecipe;

@@ -1,9 +1,9 @@
 # Full Stack Recipe App with React and a REST API
 
-This project is a full stack app based off the School Full Stack React App created in a previous project.
+This project is a full stack Recipe app based off the School Full Stack React App created in a previous project.
 
 ## Motivation
-I wanted to create an app to store all of my recipes which I've customised and tweaked over the years.
+I wanted to create an app to store all of my recipes which I've customised and tweaked over the years whilst also practicing my React and Javascript skills.
 
 ## Technologies used
 - Javascript

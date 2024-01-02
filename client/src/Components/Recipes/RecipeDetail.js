@@ -22,7 +22,7 @@ const RecipeDetail = () => {
         if (response.id) {
           setRecipeDetail(response)
         } else {
-          // If there is no course ID, direct to Not Found
+          // If there is no recipe ID, direct to Not Found
           navigate('/notfound');
         }
       })
@@ -42,33 +42,33 @@ const RecipeDetail = () => {
       <h2>Recipe Detail</h2>
       <div className="main--flex">
         <div>
-          <h3 className="course--detail--title">Recipe</h3>
-          <h4 className="course--name">{recipe.title}</h4>
+          <h3 className="recipe--detail--title">Recipe</h3>
+          <h4 className="recipe--name">{recipe.title}</h4>
           {recipe.User
             ? (<p>By {recipe.User.firstName} {recipe.User.lastName}</p>)
             : null
           }
-          <h3 className="course--detail--title">Method</h3>
+          <h3 className="recipe--detail--title">Method</h3>
           <ReactMarkdown>{recipe.method}</ReactMarkdown>
           {recipe.otherNotes && (
-            <><h3 className="course--detail--title">Other Notes</h3><ReactMarkdown>{recipe.otherNotes}</ReactMarkdown></>
+            <><h3 className="recipe--detail--title">Other Notes</h3><ReactMarkdown>{recipe.otherNotes}</ReactMarkdown></>
           )}
         </div>
         <div>
           {recipe.estimatedTime && (
-            <><h3 className="course--detail--title">Estimated Time</h3><p>{recipe.estimatedTime}</p></>
+            <><h3 className="recipe--detail--title">Estimated Time</h3><p>{recipe.estimatedTime}</p></>
           )}
 
           {recipe.numOfServings && (
-            <><h3 className="course--detail--title">Number of Servings</h3><p>{recipe.numOfServings}</p></>
+            <><h3 className="recipe--detail--title">Number of Servings</h3><p>{recipe.numOfServings}</p></>
           )}
 
-          <h3 className="course--detail--title">Ingredients</h3>
-          <ul className="course--detail--list">
+          <h3 className="recipe--detail--title">Ingredients</h3>
+          <ul className="recipe--detail--list">
             <ReactMarkdown>{recipe.ingredients}</ReactMarkdown>
           </ul>
 
-          <h3 className="course--detail--title">Original Recipe Link</h3>
+          <h3 className="recipe--detail--title">Original Recipe Link</h3>
           <p><a href={recipe.originalRecipeLink}>{recipe.originalRecipeLink}</a></p>
         </div>
       </div>
@@ -79,7 +79,7 @@ const RecipeDetail = () => {
     event.preventDefault();
     context.data.deleteRecipe(id, authUser.emailAddress, authUser.password)
       .then((response) => {
-        // If course deletion is successful, then there should be no response returned
+        // If recipe deletion is successful, then there should be no response returned
         if (response.length) {
           navigate('/error');
         } else {
