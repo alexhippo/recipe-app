@@ -1,9 +1,10 @@
-# Full Stack Recipe App with React and a REST API
-
-This project is a full stack Recipe app based off the School Full Stack React App created in a previous project for the Treehouse Full Stack JS Techdegree.
+# Recipe Notebook - Full Stack Recipe App with React and a REST API
+This project is a full stack Recipe App based off the School Full Stack React App created in a previous project for the Treehouse Full Stack JS Techdegree.
 
 ## Motivation
 I wanted to create an app to store all of my recipes which I've customised and tweaked over the years whilst also practicing my React and Javascript skills.
+
+I called this the Recipe Notebook, based off my late Lola's notebook of recipes which my family refer to every now and then.
 
 ## Features
 Users can:

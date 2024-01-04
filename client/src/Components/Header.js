@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header>
       <div className="wrap header--flex">
-        <h1 className="header--logo"><Link to='/'>Recipes</Link></h1>
+        <h1 className="header--logo"><Link to='/'>Recipe Notebook &#x1F4D2;</Link></h1>
         <nav>
           {authUser ?
             <ul className="header--signedin">
