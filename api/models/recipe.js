@@ -55,7 +55,7 @@ module.exports = (sequelize) => {
     },
     originalRecipeLink: {
       type: DataTypes.STRING,
-    }
+    },
   }, { sequelize });
 
   Recipe.associate = (models) => {

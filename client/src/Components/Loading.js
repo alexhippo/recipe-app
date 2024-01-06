@@ -1,8 +1,11 @@
 import React from 'react';
 
 const Loading = () => (
-  <div className="loading">
-    <h2><span role="img" aria-label="stack of books">&#x1f4da;</span> Loading...</h2>
+  <div>
+    <div className="loading">
+      <div className="loading-spinner" />
+      <span className='sr-only' role="alert">Loading...</span>
+    </div>
   </div>
 );
 

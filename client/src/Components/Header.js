@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header>
       <div className="wrap header--flex">
-        <h1 className="header--logo"><Link to='/'>Recipe Notebook &#x1F4D2;</Link></h1>
+        <h1 className="header--logo"><Link to='/'>Recipe Notebook <span role="img" aria-label="yellow notebook ledger">&#x1F4D2;</span></Link></h1>
         <nav>
           {authUser ?
             <ul className="header--signedin">
