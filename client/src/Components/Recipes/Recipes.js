@@ -26,8 +26,7 @@ const Recipes = () => {
   if (data.length) {
     recipes = data.map((recipe) => {
       return <Link to={`/recipes/${recipe.id}`} className="recipe--module recipe--link" key={recipe.id}>
-        <h2 className="recipe--label">Recipe</h2>
-        <h3 className="recipe--title">{recipe.title}</h3>
+        <h2 className="recipe--title">{recipe.title}</h2>
       </Link>
     });
   }
