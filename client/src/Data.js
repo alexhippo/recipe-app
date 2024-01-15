@@ -74,8 +74,8 @@ export default class Data {
    * Get all available recipes
    * @returns API response if successful
    */
-  async getRecipes() {
-    const response = await this.api('/recipes', 'GET', null, false);
+  async getRecipes(username = null, password = null) {
+    const response = await this.api('/recipes', 'GET', null, true, { username, password });
     if (response.status === 200) {
       return response.json().then(data => data);
     } else {

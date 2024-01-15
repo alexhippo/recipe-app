@@ -7,19 +7,33 @@ const { authenticateUser } = require('../middleware/auth-user');
 const { asyncHandler } = require('../middleware/async-handler');
 
 // Return all recipes
-router.get('/recipes', asyncHandler(async (req, res) => {
-  let recipes = await Recipe.findAll({
-    attributes: {
-      exclude: ['createdAt', 'updatedAt']
-    },
-    include: {
-      model: User,
-      attributes: {
-        exclude: ['password', 'createdAt', 'updatedAt']
-      }
+router.get('/recipes', authenticateUser, asyncHandler(async (req, res) => {
+  try {
+    const user = req.currentUser;
+    if (!user) {
+      res.json({
+        "error": "Sorry, you are not allowed to view recipes without signing in."
+      });
+    } else {
+      let recipes = await Recipe.findAll({
+        attributes: {
+          exclude: ['createdAt', 'updatedAt']
+        },
+        include: {
+          model: User,
+          attributes: {
+            exclude: ['password', 'createdAt', 'updatedAt']
+          }
+        }
+      });
+      const usersRecipes = recipes.filter((recipe) => {
+        return recipe.userId === user.id;
+      });
+      res.json(usersRecipes);
     }
-  });
-  res.json(recipes);
+  } catch (error) {
+    console.log('ERROR: ', error.name);
+  }
 }));
 
 // Return a specific recipe

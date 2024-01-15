@@ -1,27 +1,4 @@
 {
-  "users": [
-    {
-      "firstName": "Joe",
-      "lastName": "Smith",
-      "emailAddress": "joe@smith.com",
-      "password": "joepassword"
-    },
-    {
-      "firstName": "Sally",
-      "lastName": "Jones",
-      "emailAddress": "sally@jones.com",
-      "password": "sallypassword"
-    }
-  ],
-  "recipes": [
-    {
-      "userId": 1,
-      "title": "Pasta Alla Norma",
-      "method": "ROASTED EGGPLANT:\nPreheat oven to 240°C / 450°F (220°C fan). Line a tray with baking / parchment paper.Toss eggplant with oil, salt and pepper. Spread on the tray and roast for 20 minutes. Flip, then roast for a further 5 minutes. Cool on tray (this helps the eggplant hold its shape when tossing).\n\nCOOKING PASTA:\nBring a large pot of salted water to the boil. Start cooking the pasta a couple of minutes after you start making the sauce (next section), until al dente or to your liking.\n\nSAUCE:\nHeat oil in a very large skillet over medium heat. Add garlic, cook for 20 seconds until golden, then add onion and cook for 2 to 3 minutes until translucent and cooked through.Increase heat to medium-high and add wine, if using. Let it simmer, scraping the base of the pan to deglaze, until the wine mostly evaporates.\n\nAdd tomato passata. Now pour the water into the passata bottle, screw on the lid, shake, and pour that in too (waste nothing!)\n\nAdd dried herbs, red pepper flakes, salt and pepper. Stir and simmer 5 minutes.\n\nStir in eggplant, then add cooked and drained pasta. GENTLY toss until pasta is coated in the sauce (so the eggplant doesn't turn into complete mush!).\n\nServe immediately, garnished with a good pinch of fresh basil and parmesan.",
-      "ingredients": "* 2 medium/large eggplants\n* 2tbsp extra virgin olive oil\n* 1/2 tsp salt and pepper\n*2 tbsp extra virgin olive oil\n* 2 garlic cloves , finely minced\n* 1/2 small onion , very finely chopped\n* 1/4 cup dry white wine, usually Isabel Estate\n* 700g tomato passata\n* 1/4 cup water\n* 1 tsp dried Italian herbs or oregano\n* 1/2 tsp each salt and pepper\n* 300g / 10 oz spaghetti or other pasta, long or short (macaroni, rigatoni, penne, ziti, fettucini, bucatini)",
-      "numOfServings": 4,
-      "otherNotes": "Char the eggplant more",
-      "originalRecipeLink": "https://www.recipetineats.com/pasta-alla-norma-eggplant-pasta/"
-    }
-  ]
+  "users": [],
+  "recipes": []
 }

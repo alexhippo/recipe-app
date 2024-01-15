@@ -95,6 +95,15 @@ class Database {
       `);
     }
 
+    const oldRecipeTableExists = await this.tableExists('Recipes');
+    if (oldRecipeTableExists) {
+      this.log('Dropping the old Recipes table...');
+
+      await this.context.execute(`
+        DROP TABLE IF EXISTS Recipes;
+      `);
+    }
+
     const userTableExists = await this.tableExists('Users');
 
     if (userTableExists) {

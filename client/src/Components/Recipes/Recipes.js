@@ -8,20 +8,26 @@ const Recipes = () => {
   let [recipes] = useState('');
   const [data, setData] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const authUser = context.authenticatedUser;
 
   let navigate = useNavigate();
 
   useEffect(() => {
-    context.data.getRecipes()
-      .then((response) => {
-        setData(response);
-      })
-      .catch((error) => {
-        console.error('Error fetching and parsing data', error);
-        navigate('/error');
-      })
-      .finally(() => setIsLoading(false));
+    if (authUser) {
+      context.data.getRecipes(authUser.emailAddress, authUser.password)
+        .then((response) => {
+          setData(response);
+        })
+        .catch((error) => {
+          console.error('Error fetching and parsing data', error);
+          navigate('/error');
+        })
+        .finally(() => setIsLoading(false));
+    } else {
+      setIsLoading(false);
+    }
   }, [navigate, context.data]);
+
 
   if (data.length) {
     recipes = data.map((recipe) => {
