@@ -26,7 +26,7 @@ const Recipes = () => {
     } else {
       setIsLoading(false);
     }
-  }, [navigate, context.data]);
+  }, [navigate, context.data, authUser]);
 
 
   if (data.length) {
